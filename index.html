@@ -1,40 +1,51 @@
 <!DOCTYPE html>
-<html lang="pr-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Street Store | e-comerce</title>
+    <title>EcoVida | Sustentabilidade e Consciência Ambiental</title>
     <link rel="stylesheet" href="styles/globals.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="navbar show-menu">    
         <div class="header-inner-content">
-            <h1 class="logo" >STREET<span>STORE</span></h1>
+            <h1 class="logo">NATIVA<span>STORE</span></h1>
             <nav>
                  <ul>
-                    <li>Home</li>
-                    <li>Produtos</li>
-                    <li>Contato</li>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
             <div class="nav-icon-container">
-              <img src="images/cart.png"/>
-              <img src="images/menu.png" class="menu-buttom"/>  
+              <img src="images/cart.png" alt="Carrinho de compras"/>
+              <div class="auth-buttons" id="auth-buttons">
+                  <button class="login-btn" onclick="showAuthModal('login')">Entrar</button>
+                  <button class="signup-btn" onclick="showAuthModal('signup')">Cadastrar</button>
+              </div>
+              <div class="user-menu" id="user-menu" style="display: none;">
+                  <span class="user-name" id="user-name"></span>
+                  <button class="logout-btn" onclick="logout()">Sair</button>
+              </div>
+              <img src="images/menu.png" class="menu-button" alt="Menu"/>  
             </div>
         </div>
     </div>
 
-    <header>
+    <header id="inicio">
         <div class="header-inner-content">
             <div class="header-bottom-side">
                 <div class="header-bottom-side-left">
-                    <h2>Novo estilo ao seu dia-a-dia</h2>
-                    <p> Sucesso profissional é um conceito subjetivo que varia de pessoa para pessoa, mas geralmente é definido como a realização de metas e objetivos na carreira, com satisfação e reconhecimento!
+                    <h2>Transforme seu mundo com sustentabilidade</h2>
+                    <p>Junte-se ao movimento que está mudando o planeta! Descubra produtos eco-friendly, participe de eventos ambientais e faça parte da revolução verde que está construindo um futuro mais limpo e consciente para todos.
                     </p>
-                    <button>Saiba mais &#8594;</button>
+                    <button>Começar agora &#8594;</button>
                 </div>
                 <div class="header-bottom-side-right">
-                    <img src="images/gaming-msi-header.png" alt=""/>
+                    <img src="images/gaming-msi-header.png" alt="Ilustração de sustentabilidade e meio ambiente"/>
                 </div>
             </div>
         </div>
@@ -44,97 +55,113 @@
      <main>
         <div class="gray-background">
             <div class="page-inner-content">
-                <div class="cols cols-3">  <!-- Adicione o traço -->
-                    <img src="images/products/product-1.png" alt="" />
-                    <img src="images/products/product-2.png" alt="" />
-                    <img src="images/products/product-3.png" alt="" />
+                <div class="cols cols-3">
+                    <img src="images/products/product-1.png" alt="Produto sustentável 1 - Reciclagem" />
+                    <img src="images/products/product-2.png" alt="Produto sustentável 2 - Energia limpa" />
+                    <img src="images/products/product-3.png" alt="Produto sustentável 3 - Consumo consciente" />
                 </div>
             </div>    
         </div>
 
-        <div>
+        <div id="produtos">
             <div class="page-inner-content">
-                <h3 class="section-title">Produtos Selecionados</h3>
+                <h3 class="section-title">Produtos Sustentáveis</h3>
                 <div class="subtitle-underline"></div>
                 <div class="cols cols-4">
                     <div class="product">
-                        <img src="images/products/product-4.png" alt="" />
-                        <p class="product-name">Combo Gamer</p>
+                        <img src="images/products/product-4.png" alt="Kit de produtos reutilizáveis" />
+                        <p class="product-name">Kit Reutilizável</p>
+                        <p class="product-description">Canudos, copos e utensílios de bambu</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                        <p class="product-price">R$ 89,90</p>
+                        <button class="product-btn">Ver mais</button>
                     </div>
                     <div class="product">
-                        <img src="images/products/product-5.png" alt="" />
-                        <p class="product-name">Placa de Vídeo</p>
+                        <img src="images/products/product-5.png" alt="Painel solar portátil" />
+                        <p class="product-name">Painel Solar</p>
+                        <p class="product-description">Energia limpa para seus dispositivos</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                        <p class="product-price">R$ 299,90</p>
+                        <button class="product-btn">Ver mais</button>
                     </div>
                     <div class="product">
-                        <img src="images/products/product-6.png" alt="" />
-                        <p class="product-name">Controle Gamer</p>
+                        <img src="images/products/product-6.png" alt="Composteira doméstica" />
+                        <p class="product-name">Composteira</p>
+                        <p class="product-description">Transforme resíduos em adubo</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                        <p class="product-price">R$ 159,90</p>
+                        <button class="product-btn">Ver mais</button>
                     </div>
                     <div class="product">
-                        <img src="images/products/product-7.png" alt="" />
-                        <p class="product-name">Cadeira Gamer</p>
+                        <img src="images/products/product-7.png" alt="Produtos de limpeza ecológicos" />
+                        <p class="product-name">Limpeza Ecológica</p>
+                        <p class="product-description">Kit completo sem químicos</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                        <p class="product-price">R$ 79,90</p>
+                        <button class="product-btn">Ver mais</button>
                     </div>
                 </div>
             </div>
-             <div>
+        <div id="eventos">
             <div class="page-inner-content">
-                <h3 class="section-title">Produtos em Destaque</h3>
+                <h3 class="section-title">Eventos & Causas Ambientais</h3>
                 <div class="subtitle-underline"></div>
                 <div class="cols cols-4">
-                    <div class="product">
-                        <img src="images/products/product-8.png" alt="" />
-                        <p class="product-name">Celular 01</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-8.png" alt="Mutirão de limpeza na praia" />
+                        <div class="event-date">15 Mar 2024</div>
+                        <p class="event-name">Mutirão de Limpeza</p>
+                        <p class="event-description">Junte-se à limpeza da praia de Copacabana</p>
+                        <button class="event-btn">Participar</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-8.png" alt="" />
-                        <p class="product-name">Celular 02</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-9.png" alt="Palestra sobre energia solar" />
+                        <div class="event-date">22 Mar 2024</div>
+                        <p class="event-name">Energia Solar</p>
+                        <p class="event-description">Palestra sobre benefícios da energia limpa</p>
+                        <button class="event-btn">Inscrever-se</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-9.png" alt="" />
-                        <p class="product-name">Celular 04/p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-10.png" alt="Workshop de compostagem" />
+                        <div class="event-date">28 Mar 2024</div>
+                        <p class="event-name">Compostagem</p>
+                        <p class="event-description">Aprenda a fazer compostagem em casa</p>
+                        <button class="event-btn">Participar</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-10.png" alt="" />
-                        <p class="product-name">Suporte Carregador de Celular</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-11.png" alt="Plantio de árvores" />
+                        <div class="event-date">05 Abr 2024</div>
+                        <p class="event-name">Plantio de Árvores</p>
+                        <p class="event-description">Campanha de reflorestamento urbano</p>
+                        <button class="event-btn">Participar</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-11.png" alt="" />
-                        <p class="product-name">Celular 05</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-12.png" alt="Feira de produtos orgânicos" />
+                        <div class="event-date">12 Abr 2024</div>
+                        <p class="event-name">Feira Orgânica</p>
+                        <p class="event-description">Produtos locais e sustentáveis</p>
+                        <button class="event-btn">Visitar</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-12.png" alt="" />
-                        <p class="product-name">Game</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-13.png" alt="Workshop de reciclagem" />
+                        <div class="event-date">18 Abr 2024</div>
+                        <p class="event-name">Reciclagem Criativa</p>
+                        <p class="event-description">Transforme resíduos em arte</p>
+                        <button class="event-btn">Participar</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-13.png" alt="" />
-                        <p class="product-name">Simulador Gamer</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-14.png" alt="Caminhada ecológica" />
+                        <div class="event-date">25 Abr 2024</div>
+                        <p class="event-name">Caminhada Ecológica</p>
+                        <p class="event-description">Trilha com educação ambiental</p>
+                        <button class="event-btn">Inscrever-se</button>
                     </div>
-                    <div class="product">
-                        <img src="images/products/product-14.png" alt="" />
-                        <p class="product-name">Console Gamer</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">4,000.00 <span>M2</span></p>
+                    <div class="event-card">
+                        <img src="images/products/product-15.png" alt="Campanha de conscientização" />
+                        <div class="event-date">02 Mai 2024</div>
+                        <p class="event-name">Conscientização</p>
+                        <p class="event-description">Campanha sobre consumo consciente</p>
+                        <button class="event-btn">Apoiar</button>
                     </div>
                 </div>
             </div>
@@ -144,24 +171,218 @@
            <div class="header-inner-content">
             <div class="header-bottom-side exclusive-container">
                 <div class="header-bottom-side-left">
-                    <h2>Smart Band 4</h2>
-                    <p> O Mi Smart Band 4 tem uma tela AMOLED 39.9% maior que o Mi Band 3, tela completamente digital com brilho ajustável, de tal modo que tudo é claro ao máximo.
+                    <h2>Juntos por um planeta melhor</h2>
+                    <p>Nossa missão é inspirar e capacitar pessoas a fazerem escolhas mais sustentáveis no dia a dia. Cada pequena ação conta para construir um futuro mais verde e consciente para as próximas gerações.
                     </p>
-                    <button>Saiba mais &#8594;</button>
+                    <button>Faça parte da mudança &#8594;</button>
                 </div>
                 <div class="header-bottom-side-right">
-                    <img src="images/exclusive.png" alt=""/>
+                    <img src="images/exclusive.png" alt="Ilustração representando sustentabilidade e cuidado com o meio ambiente"/>
                 </div>
             </div>
         </div> 
      </main>
 
+    <footer id="contato">
+        <div class="page-inner-content">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EcoVida</h4>
+                    <p>Transformando o mundo através da sustentabilidade e consciência ambiental.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#eventos">Eventos</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>📧 contato@ecovida.com.br</p>
+                    <p>📱 (11) 99999-9999</p>
+                    <p>📍 São Paulo, SP</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoVida. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Autenticação -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Tela inicial de escolha -->
+            <div id="auth-choice" class="auth-screen">
+                <h2>Bem-vindo à NativaStore</h2>
+                <p>Escolha como deseja continuar:</p>
+                <div class="auth-options">
+                    <button class="auth-option-btn" onclick="showAuthForm('login')">
+                        <h3>Entrar</h3>
+                        <p>Já tenho uma conta</p>
+                    </button>
+                    <button class="auth-option-btn" onclick="showAuthForm('signup')">
+                        <h3>Cadastrar</h3>
+                        <p>Criar nova conta</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulário de Login -->
+            <div id="login-form" class="auth-screen" style="display: none;">
+                <h2>Entrar</h2>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">E-mail:</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha:</label>
+                        <input type="password" id="login-password" name="password" required minlength="6">
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Entrar</button>
+                </form>
+                <p class="auth-switch">
+                    Não tem uma conta? 
+                    <a href="#" onclick="showAuthForm('signup')">Cadastre-se</a>
+                </p>
+                <button class="back-btn" onclick="showAuthForm('choice')">← Voltar</button>
+            </div>
+
+            <!-- Formulário de Cadastro -->
+            <div id="signup-form" class="auth-screen" style="display: none;">
+                <h2>Cadastrar</h2>
+                <form id="signupForm" onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Nome completo:</label>
+                        <input type="text" id="signup-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">E-mail:</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Senha:</label>
+                        <input type="password" id="signup-password" name="password" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirmar senha:</label>
+                        <input type="password" id="signup-confirm-password" name="confirmPassword" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account-type">Tipo de conta:</label>
+                        <select id="account-type" name="accountType" onchange="toggleVendorFields()" required>
+                            <option value="">Selecione o tipo de conta</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="vendedor">Vendedor</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos específicos para vendedor -->
+                    <div id="vendor-fields" class="vendor-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="store-name">Nome da loja:</label>
+                            <input type="text" id="store-name" name="storeName">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-document">CNPJ/CPF:</label>
+                            <input type="text" id="store-document" name="storeDocument">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-description">Descrição da loja:</label>
+                            <textarea id="store-description" name="storeDescription" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Cadastrar</button>
+                </form>
+                <p class="auth-switch">
+                    Já tem uma conta? 
+                    <a href="#" onclick="showAuthForm('login')">Faça login</a>
+                </p>
+                <button class="back-btn" onclick="showAuthForm('choice')">← Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Páginas de Dashboard -->
+    <div id="dashboard-container" style="display: none;">
+        <!-- Dashboard do Cliente -->
+        <div id="client-dashboard" class="dashboard-page">
+            <div class="dashboard-header">
+                <h2>Dashboard do Cliente</h2>
+                <p>Bem-vindo, <span id="client-name"></span>!</p>
+                <button class="back-to-site-btn" onclick="showMainSite()">Voltar ao Site</button>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h3>Meus Pedidos</h3>
+                    <p>Nenhum pedido realizado ainda.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Ver Pedidos</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Favoritos</h3>
+                    <p>Produtos favoritos aparecerão aqui.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Ver Favoritos</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Meu Perfil</h3>
+                    <p>Gerencie suas informações pessoais.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Editar Perfil</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard do Vendedor -->
+        <div id="vendor-dashboard" class="dashboard-page">
+            <div class="dashboard-header">
+                <h2>Dashboard do Vendedor</h2>
+                <p>Bem-vindo, <span id="vendor-name"></span>!</p>
+                <p>Loja: <span id="vendor-store"></span></p>
+                <button class="back-to-site-btn" onclick="showMainSite()">Voltar ao Site</button>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h3>Meus Produtos</h3>
+                    <button class="add-product-btn" onclick="showAddProductForm()">Adicionar Produto</button>
+                    <p>Nenhum produto cadastrado ainda.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Gerenciar Produtos</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Vendas</h3>
+                    <p>Relatórios de vendas aparecerão aqui.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Ver Relatórios</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Configurações da Loja</h3>
+                    <p>Gerencie as informações da sua loja.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Editar Loja</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
     <script>
     const navbar = document.querySelector(".navbar");
-    const menuButton = document.querySelector(".menu-button");  <!-- Corrigido o nome da variável -->
+    const menuButton = document.querySelector(".menu-button");
 
     menuButton.addEventListener("click", () => {
-        navbar.classList.toggle("show-menu");  <!-- Corrigido classList -->
+        navbar.classList.toggle("show-menu");
+    });
+
+    // Verificar se usuário já está logado
+    window.addEventListener('load', () => {
+        checkAuthStatus();
     });
 </script>
 </body>
