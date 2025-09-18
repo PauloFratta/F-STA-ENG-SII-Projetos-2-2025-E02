@@ -81,8 +81,12 @@ function clearSession() {
 // Funções de interface
 function showAuthModal(type = 'choice') {
     const modal = document.getElementById('auth-modal');
-    modal.style.display = 'block';
-    showAuthForm(type);
+    if (modal) {
+        modal.style.display = 'block';
+        showAuthForm(type);
+    } else {
+        console.error('Modal de autenticação não encontrado!');
+    }
 }
 
 function closeAuthModal() {
@@ -99,13 +103,16 @@ function showAuthForm(formType) {
     // Mostrar a tela selecionada
     switch(formType) {
         case 'choice':
-            document.getElementById('auth-choice').style.display = 'block';
+            const choiceScreen = document.getElementById('auth-choice');
+            if (choiceScreen) choiceScreen.style.display = 'block';
             break;
         case 'login':
-            document.getElementById('login-form').style.display = 'block';
+            const loginScreen = document.getElementById('login-form');
+            if (loginScreen) loginScreen.style.display = 'block';
             break;
         case 'signup':
-            document.getElementById('signup-form').style.display = 'block';
+            const signupScreen = document.getElementById('signup-form');
+            if (signupScreen) signupScreen.style.display = 'block';
             break;
     }
 }

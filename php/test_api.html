@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste API NativaStore</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        .result { margin-top: 10px; padding: 10px; background: #f5f5f5; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Teste da API NativaStore</h1>
+    
+    <div class="test-section">
+        <h3>Teste de Login - Cliente</h3>
+        <button onclick="testClientLogin()">Login Cliente Teste</button>
+        <div id="client-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Teste de Login - Vendedor</h3>
+        <button onclick="testVendorLogin()">Login Vendedor Teste</button>
+        <div id="vendor-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Teste de Cadastro</h3>
+        <button onclick="testRegister()">Cadastrar Novo Usuário</button>
+        <div id="register-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'api/auth.php';
+        
+        async function apiRequest(data) {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                return await response.json();
+            } catch (error) {
+                return { success: false, message: 'Erro de conexão: ' + error.message };
+            }
+        }
+        
+        function showResult(elementId, result) {
+            const element = document.getElementById(elementId);
+            element.textContent = JSON.stringify(result, null, 2);
+            element.className = 'result ' + (result.success ? 'success' : 'error');
+        }
+        
+        async function testClientLogin() {
+            const result = await apiRequest({
+                action: 'login',
+                email: 'cliente@teste.com',
+                password: '123456'
+            });
+            showResult('client-result', result);
+        }
+        
+        async function testVendorLogin() {
+            const result = await apiRequest({
+                action: 'login',
+                email: 'vendedor@teste.com',
+                password: '123456'
+            });
+            showResult('vendor-result', result);
+        }
+        
+        async function testRegister() {
+            const result = await apiRequest({
+                action: 'register',
+                name: 'Usuário Teste',
+                email: 'teste' + Date.now() + '@exemplo.com',
+                password: '123456',
+                accountType: 'cliente'
+            });
+            showResult('register-result', result);
+        }
+    </script>
+</body>
+</html>
