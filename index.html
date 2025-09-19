@@ -371,20 +371,23 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="js/auth.js"></script>
     <script>
-    const navbar = document.querySelector(".navbar");
-    const menuButton = document.querySelector(".menu-button");
-
-    menuButton.addEventListener("click", () => {
-        navbar.classList.toggle("show-menu");
-    });
-
-    // Verificar se usuário já está logado
-    window.addEventListener('load', () => {
-        checkAuthStatus();
-    });
-</script>
+        // Aguardar o carregamento completo da página
+        window.addEventListener('load', function() {
+            console.log('Página carregada completamente');
+            console.log('showAuthModal disponível:', typeof showAuthModal);
+            console.log('showAuthForm disponível:', typeof showAuthForm);
+            
+            // Inicializar sistema de autenticação
+            if (typeof checkAuthStatus === 'function') {
+                checkAuthStatus();
+            } else {
+                console.error('Função checkAuthStatus não encontrada');
+            }
+        });
+    </script>
 </body>
 </html>
 

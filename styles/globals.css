@@ -89,12 +89,6 @@ body{
     cursor: pointer;
 }
 
-.nav-ul-li: hover{
-    transform: translateY(-5px);
-    Transition: all 0.2s;
-    font-weight: bold; 
-}
-
 .menu-button{
     display: block;
     cursor: pointer;
