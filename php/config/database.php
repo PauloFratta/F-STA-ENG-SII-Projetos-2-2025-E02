@@ -21,7 +21,7 @@ class Database {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch(PDOException $exception) {
-            echo "Erro de conexão: " . $exception->getMessage();
+            throw new Exception('Erro de conexão com o banco: ' . $exception->getMessage(), 0, $exception);
         }
 
         return $this->conn;

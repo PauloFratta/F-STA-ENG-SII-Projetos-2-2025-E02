@@ -6,13 +6,13 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Tratar requisições OPTIONS (CORS preflight)
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
 
 // Incluir configuração do banco
-require_once '../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 // Classe de resposta da API
 class ApiResponse {
@@ -225,7 +225,23 @@ class Auth {
 
 // Processar requisição
 try {
-    $input = json_decode(file_get_contents('php://input'), true);
+    $rawInput = file_get_contents('php://input');
+    $input = json_decode($rawInput, true);
+    
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($input)) {
+        // Fallback para dados de formulário (ex.: application/x-www-form-urlencoded)
+        $input = $_POST ?: [];
+    }
+    
+    if (empty($input) && !empty($_GET)) {
+        $input = $_GET;
+    }
+    
+    if (empty($input)) {
+        echo ApiResponse::error('Payload da requisição vazio ou inválido', 400);
+        exit();
+    }
+    
     $action = $input['action'] ?? '';
     
     $auth = new Auth();
