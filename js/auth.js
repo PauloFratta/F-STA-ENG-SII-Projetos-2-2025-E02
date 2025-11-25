@@ -304,7 +304,9 @@ function loginUserSuccess(user) {
     closeAuthModal();
     
     // Redirecionar para dashboard apropriado
-    redirectToDashboard(user.account_type);
+    if (shouldAutoRedirectToDashboard()) {
+        redirectToDashboard(user.account_type);
+    }
 }
 
 function updateAuthUI(user) {
@@ -341,9 +343,7 @@ async function logout() {
         dashboardContainer.style.display = 'none';
         
         // Mostrar conteúdo principal
-        document.querySelector('main').style.display = 'block';
-        document.querySelector('header').style.display = 'block';
-        document.querySelector('footer').style.display = 'block';
+        toggleSiteSections(true);
     }
 }
 
@@ -351,6 +351,11 @@ async function checkAuthStatus() {
     const session = getSession();
     
     if (session && session.token) {
+        // Mostrar informações do usuário imediatamente com base na sessão local
+        if (session.user) {
+            updateAuthUI(session.user);
+        }
+        
         try {
             // Validar sessão com o servidor
             const response = await validateSession(session.token);
@@ -363,23 +368,52 @@ async function checkAuthStatus() {
                 });
                 
                 updateAuthUI(response.data.user);
-                redirectToDashboard(response.data.user.account_type);
+                
+                if (shouldAutoRedirectToDashboard()) {
+                    redirectToDashboard(response.data.user.account_type);
+                }
             } else {
                 // Sessão inválida, limpar
                 clearSession();
             }
         } catch (error) {
             console.error('Erro ao validar sessão:', error);
-            clearSession();
         }
     }
 }
 
+function shouldAutoRedirectToDashboard() {
+    const body = document?.body;
+    if (!body) return true;
+    
+    const attr = body.getAttribute('data-dashboard-auto');
+    if (attr === null || attr === undefined) {
+        return true;
+    }
+    
+    const normalized = attr.trim().toLowerCase();
+    return !(normalized === 'false' || normalized === '0' || normalized === 'no');
+}
+
+function toggleSiteSections(visible) {
+    const main = document.querySelector('main');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    
+    const displayValue = visible ? '' : 'none';
+    
+    if (main) main.style.display = displayValue;
+    if (header) header.style.display = displayValue;
+    if (footer) footer.style.display = displayValue;
+}
+
 function redirectToDashboard(accountType) {
+    if (!shouldAutoRedirectToDashboard()) {
+        return;
+    }
+    
     // Esconder conteúdo principal
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('header').style.display = 'none';
-    document.querySelector('footer').style.display = 'none';
+    toggleSiteSections(false);
     
     // Mostrar dashboard
     const dashboardContainer = document.getElementById('dashboard-container');
@@ -414,9 +448,7 @@ function showMainSite() {
     
     if (session && session.user && session.user.account_type === 'cliente') {
         // Mostrar conteúdo principal
-        document.querySelector('main').style.display = 'block';
-        document.querySelector('header').style.display = 'block';
-        document.querySelector('footer').style.display = 'block';
+        toggleSiteSections(true);
         
         // Esconder dashboard
         document.getElementById('dashboard-container').style.display = 'none';
@@ -437,3 +469,19 @@ window.addEventListener('click', (event) => {
         closeAuthModal();
     }
 });
+
+function ensurePageContentVisibility() {
+    if (!shouldAutoRedirectToDashboard()) {
+        toggleSiteSections(true);
+        const dashboardContainer = document.getElementById('dashboard-container');
+        if (dashboardContainer) {
+            dashboardContainer.style.display = 'none';
+        }
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensurePageContentVisibility);
+} else {
+    ensurePageContentVisibility();
+}

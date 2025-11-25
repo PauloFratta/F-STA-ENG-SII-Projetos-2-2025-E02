@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NativaStore | Produtos Sustentáveis</title>
+    <link rel="stylesheet" href="styles/globals.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="products-page" data-dashboard-auto="false">
+    <div class="navbar show-menu">    
+        <div class="header-inner-content">
+            <h1 class="logo">NATIVA<span>STORE</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="index.html#produtos">Destaques</a></li>
+                    <li><a href="produtos.html" class="is-active">Produtos</a></li>
+                    <li><a href="index.html#eventos">Eventos</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="images/cart.png" alt="Carrinho de compras"/>
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="login-btn" onclick="showAuthModal('login')">Entrar</button>
+                    <button class="signup-btn" onclick="showAuthModal('signup')">Cadastrar</button>
+                </div>
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name"></span>
+                    <button class="logout-btn" onclick="logout()">Sair</button>
+                </div>
+                <img src="images/menu.png" class="menu-button" alt="Menu"/>  
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="products-hero">
+            <div class="page-inner-content products-hero__content">
+                <div>
+                    <p class="eyebrow">Coleção 2025 · Edição Eco</p>
+                    <h1>Produtos pensados para um futuro mais verde</h1>
+                    <p>Seleção curada de marcas parceiras, fabricadas com materiais reciclados, processos limpos e impacto social positivo. Escolha com consciência.</p>
+                    <div class="hero-actions">
+                        <button class="product-btn primary" onclick="document.getElementById('produtos-grid').scrollIntoView({behavior: 'smooth'})">Explorar catálogo</button>
+                        <button class="product-btn ghost" onclick="window.location.href='index.html#eventos'">Eventos e causas</button>
+                    </div>
+                </div>
+                <div class="hero-highlight">
+                    <span class="badge">Frete neutro em carbono</span>
+                    <p>Plante 1 árvore a cada compra acima de R$ 250.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-toolbar page-inner-content">
+            <div class="filter-group">
+                <button class="filter-chip is-active">Todos</button>
+                <button class="filter-chip">Casa & Bem-estar</button>
+                <button class="filter-chip">Energia limpa</button>
+                <button class="filter-chip">Moda sustentável</button>
+                <button class="filter-chip">Cuidados pessoais</button>
+            </div>
+            <div class="sort-group">
+                <label for="sort">Ordenar por</label>
+                <select id="sort">
+                    <option>Mais recentes</option>
+                    <option>Menor preço</option>
+                    <option>Maior preço</option>
+                    <option>Melhores avaliados</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="products-grid-section">
+            <div class="page-inner-content">
+                <div class="products-grid" id="produtos-grid">
+                    <article class="product-card">
+                        <img src="images/products/product-4.png" alt="Kit reutilizável" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Casa & Bem-estar</p>
+                                <h3>Kit Reutilizável Bamboo</h3>
+                                <p class="product-card__description">Canudos, talheres e copo feitos em bambu certificado FSC.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 89,90</span>
+                                <button class="product-btn secondary">Ver detalhes</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-5.png" alt="Painel solar portátil" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Energia limpa</p>
+                                <h3>Painel Solar Portátil 60W</h3>
+                                <p class="product-card__description">Energia solar em qualquer lugar com certificação IP65.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 299,90</span>
+                                <button class="product-btn secondary">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-6.png" alt="Composteira doméstica" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Casa & Bem-estar</p>
+                                <h3>Composteira Urbana</h3>
+                                <p class="product-card__description">Transforme resíduos orgânicos em adubo rico e natural.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 159,90</span>
+                                <button class="product-btn secondary">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-7.png" alt="Kit de limpeza ecológica" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Cuidados pessoais</p>
+                                <h3>Limpeza Ecológica</h3>
+                                <p class="product-card__description">Detergentes concentrados, veganos e sem químicos agressivos.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 79,90</span>
+                                <button class="product-btn secondary">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-8.png" alt="Refil sabonete ecológico" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Cuidados pessoais</p>
+                                <h3>Refil Sabonete Botanical</h3>
+                                <p class="product-card__description">Formulação natural com óleos essenciais e recarga refil.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 49,90</span>
+                                <button class="product-btn secondary">Ver detalhes</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-9.png" alt="Garrafas térmicas" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Casa & Bem-estar</p>
+                                <h3>Garrafa Térmica Inox</h3>
+                                <p class="product-card__description">Mantém bebidas por 12h frio/quente. Livre de BPA.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 119,90</span>
+                                <button class="product-btn secondary">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-10.png" alt="Kit hortinha" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Casa & Bem-estar</p>
+                                <h3>Kit Hortinha Modular</h3>
+                                <p class="product-card__description">Cultive temperos em casa com vasos autoirrigáveis.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 139,90</span>
+                                <button class="product-btn secondary">Ver detalhes</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/product-11.png" alt="Tênis ecológico" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Moda sustentável</p>
+                                <h3>Tênis Fiber Recycle</h3>
+                                <p class="product-card__description">Feito com algodão orgânico e borracha reciclada.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 279,90</span>
+                                <button class="product-btn secondary">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-highlight">
+            <div class="page-inner-content highlight-grid">
+                <article>
+                    <h4>Envio consciente</h4>
+                    <p>Embalagens recicláveis e parceiros logísticos que compensam CO₂.</p>
+                </article>
+                <article>
+                    <h4>Curadoria transparente</h4>
+                    <p>Selecionamos marcas com certificações socioambientais auditadas.</p>
+                </article>
+                <article>
+                    <h4>Clube de recompensas</h4>
+                    <p>Cada compra rende pontos para trocar por descontos e experiências.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="page-inner-content">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EcoVida</h4>
+                    <p>Transformando o mundo através da sustentabilidade e consciência ambiental.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#inicio">Início</a></li>
+                        <li><a href="index.html#produtos">Destaques</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="index.html#eventos">Eventos</a></li>
+                        <li><a href="index.html#sobre">Sobre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>📧 contato@ecovida.com.br</p>
+                    <p>📱 (11) 99999-9999</p>
+                    <p>📍 São Paulo, SP</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoVida. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Autenticação -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Tela inicial de escolha -->
+            <div id="auth-choice" class="auth-screen">
+                <h2>Bem-vindo à NativaStore</h2>
+                <p>Escolha como deseja continuar:</p>
+                <div class="auth-options">
+                    <button class="auth-option-btn" onclick="showAuthForm('login')">
+                        <h3>Entrar</h3>
+                        <p>Já tenho uma conta</p>
+                    </button>
+                    <button class="auth-option-btn" onclick="showAuthForm('signup')">
+                        <h3>Cadastrar</h3>
+                        <p>Criar nova conta</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulário de Login -->
+            <div id="login-form" class="auth-screen" style="display: none;">
+                <h2>Entrar</h2>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">E-mail:</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha:</label>
+                        <input type="password" id="login-password" name="password" required minlength="6">
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Entrar</button>
+                </form>
+                <p class="auth-switch">
+                    Não tem uma conta? 
+                    <a href="#" onclick="showAuthForm('signup')">Cadastre-se</a>
+                </p>
+                <button class="back-btn" onclick="showAuthForm('choice')">← Voltar</button>
+            </div>
+
+            <!-- Formulário de Cadastro -->
+            <div id="signup-form" class="auth-screen" style="display: none;">
+                <h2>Cadastrar</h2>
+                <form id="signupForm" onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Nome completo:</label>
+                        <input type="text" id="signup-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">E-mail:</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Senha:</label>
+                        <input type="password" id="signup-password" name="password" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirmar senha:</label>
+                        <input type="password" id="signup-confirm-password" name="confirmPassword" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account-type">Tipo de conta:</label>
+                        <select id="account-type" name="accountType" onchange="toggleVendorFields()" required>
+                            <option value="">Selecione o tipo de conta</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="vendedor">Vendedor</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos específicos para vendedor -->
+                    <div id="vendor-fields" class="vendor-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="store-name">Nome da loja:</label>
+                            <input type="text" id="store-name" name="storeName">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-document">CNPJ/CPF:</label>
+                            <input type="text" id="store-document" name="storeDocument">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-description">Descrição da loja:</label>
+                            <textarea id="store-description" name="storeDescription" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Cadastrar</button>
+                </form>
+                <p class="auth-switch">
+                    Já tem uma conta? 
+                    <a href="#" onclick="showAuthForm('login')">Faça login</a>
+                </p>
+                <button class="back-btn" onclick="showAuthForm('choice')">← Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Páginas de Dashboard -->
+    <div id="dashboard-container" style="display: none;">
+        <!-- Dashboard do Cliente -->
+        <div id="client-dashboard" class="dashboard-page">
+            <div class="dashboard-header">
+                <h2>Dashboard do Cliente</h2>
+                <p>Bem-vindo, <span id="client-name"></span>!</p>
+                <button class="back-to-site-btn" onclick="showMainSite()">Voltar ao Site</button>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h3>Meus Pedidos</h3>
+                    <p>Nenhum pedido realizado ainda.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Ver Pedidos</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Favoritos</h3>
+                    <p>Produtos favoritos aparecerão aqui.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Ver Favoritos</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Meu Perfil</h3>
+                    <p>Gerencie suas informações pessoais.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Editar Perfil</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard do Vendedor -->
+        <div id="vendor-dashboard" class="dashboard-page">
+            <div class="dashboard-header">
+                <h2>Dashboard do Vendedor</h2>
+                <p>Bem-vindo, <span id="vendor-name"></span>!</p>
+                <p>Loja: <span id="vendor-store"></span></p>
+                <button class="back-to-site-btn" onclick="showMainSite()">Voltar ao Site</button>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h3>Meus Produtos</h3>
+                    <button class="add-product-btn" onclick="showAddProductForm()">Adicionar Produto</button>
+                    <p>Nenhum produto cadastrado ainda.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Gerenciar Produtos</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Vendas</h3>
+                    <p>Relatórios de vendas aparecerão aqui.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Ver Relatórios</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Configurações da Loja</h3>
+                    <p>Gerencie as informações da sua loja.</p>
+                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Editar Loja</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof checkAuthStatus === 'function') {
+                checkAuthStatus();
+            }
+        });
+    </script>
+</body>
+</html>
+
