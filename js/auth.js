@@ -248,6 +248,8 @@ async function handleSignup(event) {
             showAuthForm('login');
         }, 2000);
         
+        // Nota: O produto pendente será processado após o login
+        
     } catch (error) {
         console.error('Erro no cadastro:', error);
         showMessage(error.message || 'Erro ao cadastrar usuário. Tente novamente.');
@@ -299,6 +301,11 @@ async function handleLogin(event) {
 function loginUserSuccess(user) {
     // Atualizar interface
     updateAuthUI(user);
+    
+    // Processar produto pendente se houver
+    if (typeof processPendingProduct === 'function') {
+        processPendingProduct();
+    }
     
     // Fechar modal
     closeAuthModal();
