@@ -408,11 +408,26 @@
     </div>
 
     <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
     <script>
         window.addEventListener('load', function() {
             if (typeof checkAuthStatus === 'function') {
                 checkAuthStatus();
             }
+            
+            // Adicionar event listeners aos botões "Adicionar"
+            const addButtons = document.querySelectorAll('.product-btn.secondary');
+            addButtons.forEach(button => {
+                if (button.textContent.trim() === 'Adicionar') {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const productData = extractProductData(this);
+                        if (productData) {
+                            handleAddToCart(productData);
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>

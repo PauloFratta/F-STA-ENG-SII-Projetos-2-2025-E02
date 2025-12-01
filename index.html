@@ -52,6 +52,19 @@
         </div>
     </header>
 
+    <!-- Seção do Carrinho -->
+    <section id="cart-section" class="cart-section" style="display: none;">
+        <div class="page-inner-content">
+            <h3 class="section-title">Meu Carrinho</h3>
+            <div class="subtitle-underline"></div>
+            <div id="cart-empty" class="cart-empty">
+                <p>Seu carrinho está vazio.</p>
+                <button class="product-btn" onclick="window.location.href='produtos.html'">Ver Produtos</button>
+            </div>
+            <div id="cart-items" class="cart-items" style="display: none;"></div>
+        </div>
+    </section>
+
     <!-- Main Content -->
      <main>
         <div class="gray-background">
@@ -375,6 +388,7 @@
 
     <!-- Scripts -->
     <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
     <script>
         // Aguardar o carregamento completo da página
         window.addEventListener('load', function() {
@@ -387,6 +401,15 @@
                 checkAuthStatus();
             } else {
                 console.error('Função checkAuthStatus não encontrada');
+            }
+            
+            // Mostrar seção do carrinho se o usuário estiver logado
+            const session = getSession();
+            if (session && session.user && session.token) {
+                const cartSection = document.getElementById('cart-section');
+                if (cartSection) {
+                    cartSection.style.display = 'block';
+                }
             }
         });
     </script>
