@@ -38,11 +38,27 @@ CREATE TABLE IF NOT EXISTS user_sessions (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- Tabela de eventos
+CREATE TABLE IF NOT EXISTS events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    image_url VARCHAR(500) NULL,
+    event_date DATE NULL,
+    location VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Índices para melhor performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_sessions_token ON user_sessions(token);
 CREATE INDEX idx_sessions_expires ON user_sessions(expires_at);
 CREATE INDEX idx_vendor_user_id ON vendor_data(user_id);
+CREATE INDEX idx_events_user_id ON events(user_id);
+CREATE INDEX idx_events_date ON events(event_date);
 
 -- Inserir usuário de teste (opcional)
 -- Senha: 123456 (hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi)

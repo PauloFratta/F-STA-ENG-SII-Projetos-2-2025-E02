@@ -16,7 +16,7 @@
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#produtos">Destaques</a></li>
                     <li><a href="produtos.html">Produtos</a></li>
-                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="eventos.html">Eventos</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
@@ -210,7 +210,7 @@
                         <li><a href="#inicio">Início</a></li>
                         <li><a href="#produtos">Destaques</a></li>
                         <li><a href="produtos.html">Produtos</a></li>
-                        <li><a href="#eventos">Eventos</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
                         <li><a href="#sobre">Sobre</a></li>
                     </ul>
                 </div>
@@ -329,6 +329,51 @@
         </div>
     </div>
 
+    <!-- Modal de Adicionar/Editar Produto -->
+    <div id="add-product-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeAddProductModal()">&times;</span>
+            <div class="auth-screen">
+                <h2 id="add-product-modal-title">Adicionar Produto</h2>
+                <form id="add-product-form" onsubmit="handleSaveProduct(event)">
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto:</label>
+                        <input type="text" id="product-name" name="name" required placeholder="Ex: Kit Reutilizável">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Descrição:</label>
+                        <textarea id="product-description" name="description" rows="5" required placeholder="Descreva o produto, suas características e benefícios..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-price">Preço (R$):</label>
+                        <input type="number" id="product-price" name="price" step="0.01" min="0.01" required placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image-url">URL da Imagem (opcional):</label>
+                        <input type="url" id="product-image-url" name="image_url" placeholder="https://exemplo.com/produto.jpg">
+                        <small style="color: #6c757d; font-size: 0.85rem;">Cole o link de uma imagem ou deixe em branco</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-stock">Estoque:</label>
+                        <input type="number" id="product-stock" name="stock" min="0" value="0" placeholder="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-category">Categoria (opcional):</label>
+                        <input type="text" id="product-category" name="category" placeholder="Ex: Sustentabilidade, Reciclagem">
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Salvar Produto</button>
+                </form>
+                <button class="back-btn" onclick="closeAddProductModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Páginas de Dashboard -->
     <div id="dashboard-container" style="display: none;">
         <!-- Dashboard do Cliente -->
@@ -370,7 +415,8 @@
                     <h3>Meus Produtos</h3>
                     <button class="add-product-btn" onclick="showAddProductForm()">Adicionar Produto</button>
                     <p>Nenhum produto cadastrado ainda.</p>
-                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Gerenciar Produtos</button>
+                    <div id="vendor-products-list" style="margin-top: 1rem;"></div>
+                    <button class="dashboard-action-btn" onclick="showManageProducts()">Gerenciar Produtos</button>
                 </div>
                 <div class="dashboard-card">
                     <h3>Vendas</h3>
@@ -389,6 +435,7 @@
     <!-- Scripts -->
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
     <script>
         // Aguardar o carregamento completo da página
         window.addEventListener('load', function() {
