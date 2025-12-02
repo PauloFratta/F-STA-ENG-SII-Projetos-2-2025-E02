@@ -16,7 +16,7 @@
                     <li><a href="index.html#inicio">Início</a></li>
                     <li><a href="index.html#produtos">Destaques</a></li>
                     <li><a href="produtos.html" class="is-active">Produtos</a></li>
-                    <li><a href="index.html#eventos">Eventos</a></li>
+                    <li><a href="eventos.html">Eventos</a></li>
                     <li><a href="index.html#sobre">Sobre</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
                 </ul>
@@ -45,7 +45,7 @@
                     <p>Seleção curada de marcas parceiras, fabricadas com materiais reciclados, processos limpos e impacto social positivo. Escolha com consciência.</p>
                     <div class="hero-actions">
                         <button class="product-btn primary" onclick="document.getElementById('produtos-grid').scrollIntoView({behavior: 'smooth'})">Explorar catálogo</button>
-                        <button class="product-btn ghost" onclick="window.location.href='index.html#eventos'">Eventos e causas</button>
+                        <button class="product-btn ghost" onclick="window.location.href='eventos.html'">Eventos e causas</button>
                     </div>
                 </div>
                 <div class="hero-highlight">
@@ -78,7 +78,7 @@
             <div class="page-inner-content">
                 <div class="products-grid" id="produtos-grid">
                     <article class="product-card">
-                        <img src="images/products/product-4.png" alt="Kit reutilizável" loading="lazy">
+                        <img src="images/products/kit_bamboo.jpg" alt="Kit reutilizável" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Casa & Bem-estar</p>
@@ -93,7 +93,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-5.png" alt="Painel solar portátil" loading="lazy">
+                        <img src="images/products/painel_solar.webp" alt="Painel solar portátil" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Energia limpa</p>
@@ -108,7 +108,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-6.png" alt="Composteira doméstica" loading="lazy">
+                        <img src="images/products/composteira.webp" alt="Composteira doméstica" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Casa & Bem-estar</p>
@@ -123,7 +123,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-7.png" alt="Kit de limpeza ecológica" loading="lazy">
+                        <img src="images/products/detergentes.jpg" alt="Kit de limpeza ecológica" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Cuidados pessoais</p>
@@ -138,7 +138,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-8.png" alt="Refil sabonete ecológico" loading="lazy">
+                        <img src="images/products/sabonete_botanical.png" alt="Refil sabonete ecológico" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Cuidados pessoais</p>
@@ -153,7 +153,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-9.png" alt="Garrafas térmicas" loading="lazy">
+                        <img src="images/products/garrafa_inox.jpg" alt="Garrafas térmicas" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Casa & Bem-estar</p>
@@ -168,7 +168,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-10.png" alt="Kit hortinha" loading="lazy">
+                        <img src="images/products/horta_modular.jpg" alt="Kit hortinha" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Casa & Bem-estar</p>
@@ -183,7 +183,7 @@
                     </article>
 
                     <article class="product-card">
-                        <img src="images/products/product-11.png" alt="Tênis ecológico" loading="lazy">
+                        <img src="images/products/tenis_reciclavel.jpeg" alt="Tênis ecológico" loading="lazy">
                         <div class="product-card__body">
                             <div>
                                 <p class="product-card__category">Moda sustentável</p>
@@ -231,7 +231,7 @@
                         <li><a href="index.html#inicio">Início</a></li>
                         <li><a href="index.html#produtos">Destaques</a></li>
                         <li><a href="produtos.html">Produtos</a></li>
-                        <li><a href="index.html#eventos">Eventos</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
                         <li><a href="index.html#sobre">Sobre</a></li>
                     </ul>
                 </div>
@@ -350,6 +350,51 @@
         </div>
     </div>
 
+    <!-- Modal de Adicionar/Editar Produto -->
+    <div id="add-product-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeAddProductModal()">&times;</span>
+            <div class="auth-screen">
+                <h2 id="add-product-modal-title">Adicionar Produto</h2>
+                <form id="add-product-form" onsubmit="handleSaveProduct(event)">
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto:</label>
+                        <input type="text" id="product-name" name="name" required placeholder="Ex: Kit Reutilizável">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Descrição:</label>
+                        <textarea id="product-description" name="description" rows="5" required placeholder="Descreva o produto, suas características e benefícios..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-price">Preço (R$):</label>
+                        <input type="number" id="product-price" name="price" step="0.01" min="0.01" required placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image-url">URL da Imagem (opcional):</label>
+                        <input type="url" id="product-image-url" name="image_url" placeholder="https://exemplo.com/produto.jpg">
+                        <small style="color: #6c757d; font-size: 0.85rem;">Cole o link de uma imagem ou deixe em branco</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-stock">Estoque:</label>
+                        <input type="number" id="product-stock" name="stock" min="0" value="0" placeholder="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-category">Categoria (opcional):</label>
+                        <input type="text" id="product-category" name="category" placeholder="Ex: Sustentabilidade, Reciclagem">
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Salvar Produto</button>
+                </form>
+                <button class="back-btn" onclick="closeAddProductModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Páginas de Dashboard -->
     <div id="dashboard-container" style="display: none;">
         <!-- Dashboard do Cliente -->
@@ -391,7 +436,8 @@
                     <h3>Meus Produtos</h3>
                     <button class="add-product-btn" onclick="showAddProductForm()">Adicionar Produto</button>
                     <p>Nenhum produto cadastrado ainda.</p>
-                    <button class="dashboard-action-btn" onclick="alert('Funcionalidade em desenvolvimento!')">Gerenciar Produtos</button>
+                    <div id="vendor-products-list" style="margin-top: 1rem;"></div>
+                    <button class="dashboard-action-btn" onclick="showManageProducts()">Gerenciar Produtos</button>
                 </div>
                 <div class="dashboard-card">
                     <h3>Vendas</h3>
@@ -409,25 +455,33 @@
 
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
     <script>
         window.addEventListener('load', function() {
             if (typeof checkAuthStatus === 'function') {
                 checkAuthStatus();
             }
             
+            // Carregar produtos do banco de dados
+            if (typeof displayProductsOnSite === 'function') {
+                displayProductsOnSite();
+            }
+            
             // Adicionar event listeners aos botões "Adicionar"
-            const addButtons = document.querySelectorAll('.product-btn.secondary');
-            addButtons.forEach(button => {
-                if (button.textContent.trim() === 'Adicionar') {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const productData = extractProductData(this);
-                        if (productData) {
-                            handleAddToCart(productData);
-                        }
-                    });
-                }
-            });
+            setTimeout(() => {
+                const addButtons = document.querySelectorAll('.product-btn.secondary');
+                addButtons.forEach(button => {
+                    if (button.textContent.trim() === 'Adicionar') {
+                        button.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const productData = extractProductData(this);
+                            if (productData) {
+                                handleAddToCart(productData);
+                            }
+                        });
+                    }
+                });
+            }, 500);
         });
     </script>
 </body>

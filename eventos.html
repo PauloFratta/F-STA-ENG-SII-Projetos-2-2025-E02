@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NativaStore | Eventos e Causas</title>
+    <link rel="stylesheet" href="styles/globals.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .events-hero {
+            background: linear-gradient(135deg, #2d5016 0%, #3a7d2a 60%, #4a9d3a 100%);
+            color: #fff;
+            padding: 4rem 0 3rem;
+        }
+
+        .events-hero__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .events-hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .events-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .create-event-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .create-event-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .events-container {
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-article {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-article__image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a9d3a;
+            font-size: 3rem;
+        }
+
+        .event-article__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-article__body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-article__meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .event-article__date {
+            background-color: #4a9d3a;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .event-article__title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d5016;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .event-article__description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .event-article__location {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-article__author {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .event-article__actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .event-article__actions button {
+            flex: 1;
+        }
+
+        .delete-event-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .delete-event-btn:hover {
+            background-color: #c82333;
+        }
+
+        .empty-events {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .empty-events p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .events-hero__content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .events-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .events-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="products-page" data-dashboard-auto="false">
+    <div class="navbar show-menu">    
+        <div class="header-inner-content">
+            <h1 class="logo">NATIVA<span>STORE</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="index.html#produtos">Destaques</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="eventos.html" class="is-active">Eventos</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="images/cart.png" alt="Carrinho de compras"/>
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="login-btn" onclick="showAuthModal('login')">Entrar</button>
+                    <button class="signup-btn" onclick="showAuthModal('signup')">Cadastrar</button>
+                </div>
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name"></span>
+                    <button class="logout-btn" onclick="logout()">Sair</button>
+                </div>
+                <img src="images/menu.png" class="menu-button" alt="Menu"/>  
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="events-hero">
+            <div class="page-inner-content events-hero__content">
+                <div>
+                    <h1>Eventos & Causas Ambientais</h1>
+                    <p>Descubra projetos sustentáveis, participe de eventos e faça parte da mudança. Compartilhe suas iniciativas e inspire outros a cuidar do planeta.</p>
+                </div>
+                <button class="create-event-btn" onclick="showCreateEventModal()" id="create-event-btn">Criar Evento</button>
+            </div>
+        </section>
+
+        <section class="events-container">
+            <div class="page-inner-content">
+                <div class="events-header">
+                    <h2 class="section-title" style="margin-top: 0;">Projetos e Eventos</h2>
+                </div>
+                <div class="events-grid" id="events-grid">
+                    <!-- Eventos serão carregados aqui -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="page-inner-content">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EcoVida</h4>
+                    <p>Transformando o mundo através da sustentabilidade e consciência ambiental.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#inicio">Início</a></li>
+                        <li><a href="index.html#produtos">Destaques</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="index.html#sobre">Sobre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>📧 contato@ecovida.com.br</p>
+                    <p>📱 (11) 99999-9999</p>
+                    <p>📍 São Paulo, SP</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoVida. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Autenticação -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Tela inicial de escolha -->
+            <div id="auth-choice" class="auth-screen">
+                <h2>Bem-vindo à NativaStore</h2>
+                <p>Escolha como deseja continuar:</p>
+                <div class="auth-options">
+                    <button class="auth-option-btn" onclick="showAuthForm('login')">
+                        <h3>Entrar</h3>
+                        <p>Já tenho uma conta</p>
+                    </button>
+                    <button class="auth-option-btn" onclick="showAuthForm('signup')">
+                        <h3>Cadastrar</h3>
+                        <p>Criar nova conta</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulário de Login -->
+            <div id="login-form" class="auth-screen" style="display: none;">
+                <h2>Entrar</h2>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">E-mail:</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha:</label>
+                        <input type="password" id="login-password" name="password" required minlength="6">
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Entrar</button>
+                </form>
+                <p class="auth-switch">
+                    Não tem uma conta? 
+                    <a href="#" onclick="showAuthForm('signup')">Cadastre-se</a>
+                </p>
+                <button class="back-btn" onclick="showAuthForm('choice')">← Voltar</button>
+            </div>
+
+            <!-- Formulário de Cadastro -->
+            <div id="signup-form" class="auth-screen" style="display: none;">
+                <h2>Cadastrar</h2>
+                <form id="signupForm" onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Nome completo:</label>
+                        <input type="text" id="signup-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">E-mail:</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Senha:</label>
+                        <input type="password" id="signup-password" name="password" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirmar senha:</label>
+                        <input type="password" id="signup-confirm-password" name="confirmPassword" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account-type">Tipo de conta:</label>
+                        <select id="account-type" name="accountType" onchange="toggleVendorFields()" required>
+                            <option value="">Selecione o tipo de conta</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="vendedor">Vendedor</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos específicos para vendedor -->
+                    <div id="vendor-fields" class="vendor-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="store-name">Nome da loja:</label>
+                            <input type="text" id="store-name" name="storeName">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-document">CNPJ/CPF:</label>
+                            <input type="text" id="store-document" name="storeDocument">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-description">Descrição da loja:</label>
+                            <textarea id="store-description" name="storeDescription" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Cadastrar</button>
+                </form>
+                <p class="auth-switch">
+                    Já tem uma conta? 
+                    <a href="#" onclick="showAuthForm('login')">Faça login</a>
+                </p>
+                <button class="back-btn" onclick="showAuthForm('choice')">← Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Criar Evento -->
+    <div id="create-event-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content">
+            <span class="close-modal" onclick="closeCreateEventModal()">&times;</span>
+            <div class="auth-screen">
+                <h2>Criar Novo Evento</h2>
+                <form id="create-event-form" onsubmit="handleCreateEvent(event)">
+                    <div class="form-group">
+                        <label for="event-title">Título do Evento:</label>
+                        <input type="text" id="event-title" name="title" required placeholder="Ex: Mutirão de Limpeza na Praia">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-description">Descrição:</label>
+                        <textarea id="event-description" name="description" rows="5" required placeholder="Descreva o evento, seus objetivos e como participar..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-image">URL da Imagem (opcional):</label>
+                        <input type="url" id="event-image" name="image_url" placeholder="https://exemplo.com/imagem.jpg">
+                        <small style="color: #6c757d; font-size: 0.85rem;">Cole o link de uma imagem ou deixe em branco</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-date">Data do Evento (opcional):</label>
+                        <input type="date" id="event-date" name="event_date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-location">Localização (opcional):</label>
+                        <input type="text" id="event-location" name="location" placeholder="Ex: Praia de Copacabana, Rio de Janeiro">
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Criar Evento</button>
+                    <button type="button" class="back-btn" onclick="closeCreateEventModal()">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/events.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof checkAuthStatus === 'function') {
+                checkAuthStatus();
+            }
+            if (typeof loadEvents === 'function') {
+                loadEvents();
+            }
+        });
+    </script>
+</body>
+</html>
+

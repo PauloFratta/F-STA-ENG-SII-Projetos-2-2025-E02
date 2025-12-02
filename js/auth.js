@@ -449,22 +449,26 @@ function redirectToDashboard(accountType) {
     }
 }
 
-// Função para voltar ao site principal (para clientes)
+// Função para voltar ao site principal
 function showMainSite() {
     const session = getSession();
     
-    if (session && session.user && session.user.account_type === 'cliente') {
+    if (session && session.user) {
         // Mostrar conteúdo principal
         toggleSiteSections(true);
         
         // Esconder dashboard
-        document.getElementById('dashboard-container').style.display = 'none';
+        const dashboardContainer = document.getElementById('dashboard-container');
+        if (dashboardContainer) {
+            dashboardContainer.style.display = 'none';
+        }
+        
+        // Esconder área de gerenciamento de produtos se estiver aberta
+        const manageArea = document.getElementById('manage-products-area');
+        if (manageArea) {
+            manageArea.style.display = 'none';
+        }
     }
-}
-
-// Função para adicionar produto (vendedor)
-function showAddProductForm() {
-    alert('Funcionalidade de adicionar produtos será implementada em breve!');
 }
 
 // Sistema inicializado
