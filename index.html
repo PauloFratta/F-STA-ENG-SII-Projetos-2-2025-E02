@@ -46,7 +46,7 @@
                     <button onclick="window.location.href='produtos.html'">Ver produtos &#8594;</button>
                 </div>
                 <div class="header-bottom-side-right">
-                    <img src="images/gaming-msi-header.png" alt="Ilustração de sustentabilidade e meio ambiente"/>
+                    <img src="images/products/arvore.jpg" alt="Ilustração de sustentabilidade e meio ambiente"/>
                 </div>
             </div>
         </div>
@@ -70,9 +70,9 @@
         <div class="gray-background">
             <div class="page-inner-content">
                 <div class="cols cols-3">
-                    <img src="images/products/product-1.png" alt="Produto sustentável 1 - Reciclagem" />
-                    <img src="images/products/product-2.png" alt="Produto sustentável 2 - Energia limpa" />
-                    <img src="images/products/product-3.png" alt="Produto sustentável 3 - Consumo consciente" />
+                    <img src="images/products/organic.webp" alt="Produto sustentável 1 - Reciclagem" />
+                    <img src="images/products/future.jpeg" alt="Produto sustentável 2 - Energia limpa" />
+                    <img src="images/products/brisa.webp" alt="Produto sustentável 3 - Consumo consciente" />
                 </div>
             </div>    
         </div>
@@ -81,46 +81,94 @@
             <div class="page-inner-content">
                 <h3 class="section-title">Produtos Sustentáveis</h3>
                 <div class="subtitle-underline"></div>
-                <div class="cols cols-4">
-                    <div class="product">
-                        <img src="images/products/product-4.png" alt="Kit de produtos reutilizáveis" />
-                        <p class="product-name">Kit Reutilizável</p>
-                        <p class="product-description">Canudos, copos e utensílios de bambu</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">R$ 89,90</p>
-                        <button class="product-btn">Ver mais</button>
-                    </div>
-                    <div class="product">
-                        <img src="images/products/product-5.png" alt="Painel solar portátil" />
-                        <p class="product-name">Painel Solar</p>
-                        <p class="product-description">Energia limpa para seus dispositivos</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">R$ 299,90</p>
-                        <button class="product-btn">Ver mais</button>
-                    </div>
-                    <div class="product">
-                        <img src="images/products/product-6.png" alt="Composteira doméstica" />
-                        <p class="product-name">Composteira</p>
-                        <p class="product-description">Transforme resíduos em adubo</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">R$ 159,90</p>
-                        <button class="product-btn">Ver mais</button>
-                    </div>
-                    <div class="product">
-                        <img src="images/products/product-7.png" alt="Produtos de limpeza ecológicos" />
-                        <p class="product-name">Limpeza Ecológica</p>
-                        <p class="product-description">Kit completo sem químicos</p>
-                        <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="product-price">R$ 79,90</p>
-                        <button class="product-btn">Ver mais</button>
-                    </div>
+                <div class="products-grid home-products-grid">
+                    <article class="product-card">
+                        <img src="images/products/kit_bamboo.jpg" alt="Kit reutilizável" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Casa &amp; Bem-estar</p>
+                                <h3>Kit Reutilizável Bamboo</h3>
+                                <p class="product-card__description">Canudos, talheres e copo feitos em bambu certificado FSC.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 89,90</span>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/painel_solar.webp" alt="Painel solar portátil" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Energia limpa</p>
+                                <h3>Painel Solar Portátil 60W</h3>
+                                <p class="product-card__description">Energia solar em qualquer lugar com certificação IP65.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 299,90</span>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/composteira.webp" alt="Composteira doméstica" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Casa &amp; Bem-estar</p>
+                                <h3>Composteira Urbana</h3>
+                                <p class="product-card__description">Transforme resíduos orgânicos em adubo rico e natural.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 159,90</span>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="images/products/detergentes.jpg" alt="Kit de limpeza ecológica" loading="lazy">
+                        <div class="product-card__body">
+                            <div>
+                                <p class="product-card__category">Cuidados pessoais</p>
+                                <h3>Limpeza Ecológica</h3>
+                                <p class="product-card__description">Detergentes concentrados, veganos e sem químicos agressivos.</p>
+                            </div>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">R$ 79,90</span>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         <div id="eventos">
             <div class="page-inner-content">
                 <h3 class="section-title">Eventos & Causas Ambientais</h3>
                 <div class="subtitle-underline"></div>
-                <div class="cols cols-4">
+                <div class="events-highlight">
+                    <p class="events-intro">
+                        A preservação do meio ambiente começa com <strong>informação, atitude e participação ativa</strong>. 
+                        Por isso, reunimos uma agenda especial para quem quer se envolver de verdade com a causa sustentável.
+                    </p>
+                    <p class="events-intro">
+                        Em <strong>Eventos &amp; Causas Ambientais</strong> você encontra mutirões de limpeza, workshops, feiras 
+                        sustentáveis, palestras e diversas ações colaborativas que fortalecem a consciência ecológica.
+                    </p>
+                    <p class="events-intro">
+                        Quer dar o próximo passo? Acesse a aba <strong>Eventos</strong> e descubra tudo o que está acontecendo 
+                        perto de você. A mudança que o mundo precisa pode começar com a sua presença.
+                    </p>
+                    <button class="product-btn primary events-cta-btn" onclick="window.location.href='eventos.html'">
+                        Ver todos os eventos &#8594;
+                    </button>
+                </div>
+                <!-- <div class="cols cols-4">
                     <div class="event-card">
                         <img src="images/products/product-8.png" alt="Mutirão de limpeza na praia" />
                         <div class="event-date">15 Mar 2024</div>
@@ -150,7 +198,7 @@
                         <button class="event-btn">Participar</button>
                     </div>
                     <div class="event-card">
-                        <img src="images/products/product-12.png" alt="Feira de produtos orgânicos" />
+                        <img src="images/products/product-12.png" alt="Fera de produtos orgâniicos" />
                         <div class="event-date">12 Abr 2024</div>
                         <p class="event-name">Feira Orgânica</p>
                         <p class="event-description">Produtos locais e sustentáveis</p>
@@ -177,7 +225,7 @@
                         <p class="event-description">Campanha sobre consumo consciente</p>
                         <button class="event-btn">Apoiar</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -189,9 +237,6 @@
                     <p>Nossa missão é inspirar e capacitar pessoas a fazerem escolhas mais sustentáveis no dia a dia. Cada pequena ação conta para construir um futuro mais verde e consciente para as próximas gerações.
                     </p>
                     <button>Faça parte da mudança &#8594;</button>
-                </div>
-                <div class="header-bottom-side-right">
-                    <img src="images/exclusive.png" alt="Ilustração representando sustentabilidade e cuidado com o meio ambiente"/>
                 </div>
             </div>
         </div> 

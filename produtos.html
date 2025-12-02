@@ -87,7 +87,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 89,90</span>
-                                <button class="product-btn secondary">Ver detalhes</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -102,7 +103,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 299,90</span>
-                                <button class="product-btn secondary">Adicionar</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -117,7 +119,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 159,90</span>
-                                <button class="product-btn secondary">Adicionar</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -132,7 +135,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 79,90</span>
-                                <button class="product-btn secondary">Adicionar</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -147,7 +151,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 49,90</span>
-                                <button class="product-btn secondary">Ver detalhes</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -162,7 +167,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 119,90</span>
-                                <button class="product-btn secondary">Adicionar</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -177,7 +183,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 139,90</span>
-                                <button class="product-btn secondary">Ver detalhes</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -192,7 +199,8 @@
                             </div>
                             <div class="product-card__footer">
                                 <span class="product-card__price">R$ 279,90</span>
-                                <button class="product-btn secondary">Adicionar</button>
+                                <button class="product-btn secondary view-details-btn">Ver detalhes</button>
+                                <button class="product-btn secondary add-to-cart-btn">Adicionar</button>
                             </div>
                         </div>
                     </article>
@@ -395,6 +403,25 @@
         </div>
     </div>
 
+    <!-- Modal de Detalhes do Produto -->
+    <div id="product-details-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content product-details-modal-content">
+            <span class="close-modal" onclick="closeProductDetailsModal()">&times;</span>
+            <div class="product-details-modal-body">
+                <div class="product-details-image-wrapper">
+                    <img id="product-details-image" src="" alt="Produto" />
+                </div>
+                <div class="product-details-info">
+                    <p id="product-details-category" class="product-card__category"></p>
+                    <h2 id="product-details-name"></h2>
+                    <p id="product-details-description" class="product-card__description"></p>
+                    <p id="product-details-price" class="product-card__price"></p>
+                    <button id="product-details-add-btn" class="product-btn secondary">Adicionar ao carrinho</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Páginas de Dashboard -->
     <div id="dashboard-container" style="display: none;">
         <!-- Dashboard do Cliente -->
@@ -457,6 +484,38 @@
     <script src="js/cart.js"></script>
     <script src="js/products.js"></script>
     <script>
+        let currentDetailsProduct = null;
+
+        function openProductDetailsModal(product) {
+            const modal = document.getElementById('product-details-modal');
+            if (!modal || !product) return;
+
+            currentDetailsProduct = product;
+
+            const imgEl = document.getElementById('product-details-image');
+            const nameEl = document.getElementById('product-details-name');
+            const descEl = document.getElementById('product-details-description');
+            const priceEl = document.getElementById('product-details-price');
+            const categoryEl = document.getElementById('product-details-category');
+
+            if (imgEl) imgEl.src = product.image || '';
+            if (imgEl) imgEl.alt = product.name || 'Produto';
+            if (nameEl) nameEl.textContent = product.name || '';
+            if (descEl) descEl.textContent = product.description || '';
+            if (priceEl) priceEl.textContent = product.price || '';
+            if (categoryEl) categoryEl.textContent = product.category || '';
+
+            modal.style.display = 'block';
+        }
+
+        function closeProductDetailsModal() {
+            const modal = document.getElementById('product-details-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+            currentDetailsProduct = null;
+        }
+
         window.addEventListener('load', function() {
             if (typeof checkAuthStatus === 'function') {
                 checkAuthStatus();
@@ -469,9 +528,9 @@
             
             // Adicionar event listeners aos botões "Adicionar"
             setTimeout(() => {
-                const addButtons = document.querySelectorAll('.product-btn.secondary');
+                const addButtons = document.querySelectorAll('.product-btn.secondary, .add-to-cart-btn');
                 addButtons.forEach(button => {
-                    if (button.textContent.trim() === 'Adicionar') {
+                    if (button.textContent.trim() === 'Adicionar' && !button.dataset.product) {
                         button.addEventListener('click', function(e) {
                             e.preventDefault();
                             const productData = extractProductData(this);
@@ -482,6 +541,48 @@
                     }
                 });
             }, 500);
+
+            // Adicionar event listeners aos botões "Ver detalhes"
+            setTimeout(() => {
+                const detailButtons = document.querySelectorAll('.product-btn.secondary, .view-details-btn');
+                detailButtons.forEach(button => {
+                    if (button.textContent.trim() === 'Ver detalhes') {
+                        button.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const productCard = this.closest('.product-card') || this.closest('.product');
+                            if (!productCard) return;
+
+                            const productData = extractProductData(this) || {};
+                            const categoryEl = productCard.querySelector('.product-card__category');
+
+                            const detailsProduct = {
+                                ...productData,
+                                category: categoryEl ? categoryEl.textContent.trim() : ''
+                            };
+
+                            openProductDetailsModal(detailsProduct);
+                        });
+                    }
+                });
+
+                const addFromDetailsBtn = document.getElementById('product-details-add-btn');
+                if (addFromDetailsBtn) {
+                    addFromDetailsBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (currentDetailsProduct && typeof handleAddToCart === 'function') {
+                            handleAddToCart(currentDetailsProduct);
+                        }
+                    });
+                }
+
+                // Fechar modal de detalhes ao clicar fora
+                window.addEventListener('click', function(event) {
+                    const modal = document.getElementById('product-details-modal');
+                    if (modal && event.target === modal) {
+                        closeProductDetailsModal();
+                    }
+                });
+            }, 600);
         });
     </script>
 </body>
