@@ -102,7 +102,7 @@ async function displayProductsOnSite() {
                 : '<img src="images/products/product-1.png" alt="Produto sem imagem" loading="lazy">';
             
             return `
-                <article class="product-card">
+                <article class="product-card" data-source="db-product">
                     ${imageHtml}
                     <div class="product-card__body">
                         <div>
@@ -112,6 +112,7 @@ async function displayProductsOnSite() {
                         </div>
                         <div class="product-card__footer">
                             <span class="product-card__price">${formatPrice(product.price)}</span>
+                            <button class="product-btn secondary view-details-btn">Ver detalhes</button>
                             <button class="product-btn secondary add-to-cart-btn" data-product='${JSON.stringify({
                                 id: product.id,
                                 name: product.name,
@@ -127,18 +128,48 @@ async function displayProductsOnSite() {
         // Adicionar os produtos ao grid
         productsGrid.insertAdjacentHTML('beforeend', productsHTML);
         
-        // Adicionar event listeners aos botões de adicionar ao carrinho
-        const addButtons = productsGrid.querySelectorAll('.add-to-cart-btn');
-        addButtons.forEach(button => {
+        // Adicionar event listeners aos botões de adicionar ao carrinho (produtos do banco)
+        const dbAddButtons = productsGrid.querySelectorAll('.product-card[data-source="db-product"] .add-to-cart-btn');
+        dbAddButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 try {
-                    const productData = JSON.parse(this.dataset.product);
-                    if (typeof handleAddToCart === 'function') {
-                        handleAddToCart(productData);
+                    let productData = null;
+                    if (this.dataset.product) {
+                        productData = JSON.parse(this.dataset.product);
+                    } else if (typeof extractProductData === 'function') {
+                        productData = extractProductData(this);
                     }
+                    if (productData && typeof handleAddToCart === 'function') {
+                        handleAddToCart(productData);
+                    }                    
                 } catch (err) {
                     console.error('Erro ao processar produto:', err);
+                }
+            });
+        });
+
+        // Adicionar event listeners aos botões "Ver detalhes" (produtos do banco)
+        const dbDetailButtons = productsGrid.querySelectorAll('.product-card[data-source="db-product"] .view-details-btn');
+        dbDetailButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productCard = this.closest('.product-card') || this.closest('.product');
+                if (!productCard) return;
+
+                let productData = {};
+                if (typeof extractProductData === 'function') {
+                    productData = extractProductData(this) || {};
+                }
+
+                const categoryEl = productCard.querySelector('.product-card__category');
+                const detailsProduct = {
+                    ...productData,
+                    category: categoryEl ? categoryEl.textContent.trim() : ''
+                };
+
+                if (typeof openProductDetailsModal === 'function') {
+                    openProductDetailsModal(detailsProduct);
                 }
             });
         });
